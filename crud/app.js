@@ -19,8 +19,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.get('/', (req, res) => {
  res.render('pages/index',{data});
 });
-
-
+app.get('/Marque',(req,res)=>{
+	res.render('Marque', {data})
+});
 app.post('/Marque', function(req, res){
 	if(req.body.Marque==""||req.body.Collection==""||req.body.Categorie=="" || req.body.ID==""){
 		res.redirect('/Marque')
@@ -32,7 +33,7 @@ else{
 			"Marque":req.body.Marque,
 			"Collectin":req.body.Collection,
 			"Categorie":req.body.Categorie,
-			
+		
 		});
 		fs.writeFileSync('./data/Marque.json', JSON.stringify(data, null, 4));
 	res.render('Marque.ejs');
